@@ -1,0 +1,7 @@
+<% if @ingredient.errors.any? %>
+  <div id="error_describe" class="row">
+    <% @ingredient.errors.messages[errors_for.to_sym].each do |message| %>
+      <p class="alert alert-danger"><%= "#{errors_for} #{message}" %></p>
+    <% end %>
+  </div>
+<% end %>

@@ -6,16 +6,24 @@
   <div class="container-fluid">
     <div class="row">
       <div class="form-group">
-        <%= f.text_field :name, placeholder: "Enter ingredient name", class: "form-control", autofocus: true %>
+        <%= f.text_field :name, placeholder: "Enter ingredient name",
+                                      class: "form-control", autofocus: true %>
       </div>
       <%= f.submit "Create ingredient", class: "btn btn-default" %>
       <%= link_to "Cancel", ingredients_path %>
     </div>
 
+    <%= render partial: 'shared/error_messages',
+                      locals: {ingredient: @ingredient, errors_for: 'name' } %>
+
+
     <div class="row">
       <div class="form-group">
-        <%= f.text_field :step, placeholder: "Select ingredient stage", class: "form-control" %>
+        <%= f.text_field :step, placeholder: "Select ingredient stage",
+                                                        class: "form-control" %>
       </div>
     </div>
+    <%= render partial: 'shared/error_messages',
+                      locals: {ingredient: @ingredient, errors_for: 'step' } %>
   </div>
 <% end %>
