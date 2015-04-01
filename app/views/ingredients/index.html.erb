@@ -4,7 +4,7 @@
 <div class="row">
   <% @ingredients.each do |ingredient| %>
     <div class="col-md-1 col-sm-2">
-      <h4><%= ingredient.step %></h4>
+      <h4><%= link_to ingredient.step, edit_ingredient_path(ingredient) %></h4>
     </div>
 
     <div class="col-md-11 col-sm-10">

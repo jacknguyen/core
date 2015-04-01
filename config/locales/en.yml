@@ -20,4 +20,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      ingredient:
+        name: "Name"
+    errors:
+      models:
+        ingredient:
+          attributes:
+            name:
+              blank: "Please enter a ingredient name"
+            track:
+              blank: "Please enter a track name"
+            step:
+              blank: "Please enter a step name"
