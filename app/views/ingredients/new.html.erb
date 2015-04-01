@@ -19,8 +19,7 @@
 
     <div class="row">
       <div class="form-group">
-        <%= f.text_field :step, placeholder: "Select ingredient stage",
-                                                        class: "form-control" %>
+        <%= f.select :step, options_for_select(['Team','Ideation','Test','Plan','Design','Develop','Expose','Grow','Exit']), {}, { class: "form-control" }%>
       </div>
     </div>
     <%= render partial: 'shared/error_messages',
