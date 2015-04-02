@@ -4,28 +4,27 @@
 
 <%= form_for @ingredient do |f| %>
     <div class="row">
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <%= f.text_field :name, placeholder: "Enter ingredient name",
                                       class: "form-control", autofocus: true %>
       </div>
-      <div class="col-sm-10">
+      <div class="col-sm-9">
         <%= f.submit "Create ingredient", class: "btn btn-default" %>
         <%= link_to "Cancel", ingredients_path %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <%= render partial: 'shared/error_messages',
                           locals: {ingredient: @ingredient, errors_for: 'name' } %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-2">
-        <%= select_tag :step, options_for_select(
+      <div class="col-sm-3">
+        <%= f.select :step, options_for_select(
             [
-              ['Select an ingredient step','', {disabled: true, selected: true}],
               ['Team','Team'],
               ['Ideation','Ideation'],
               ['Test','Test'],
@@ -36,7 +35,7 @@
               ['Grow','Grow'],
               ['Exit','Exit']
             ]
-          ), {class: "form-control"} %>
+          ), {prompt: 'Select an ingredient step'}, {class: "form-control"} %>
       </div>
     </div>
 
@@ -44,15 +43,14 @@
                       locals: {ingredient: @ingredient, errors_for: 'step' } %>
 
     <div class="row">
-      <div class="col-sm-2">
-        <%= select_tag :track, options_for_select(
+      <div class="col-sm-3">
+        <%= f.select :track, options_for_select(
             [
-              ['Select a track','', {disabled: true, selected: true}],
               ['Product', 'Product'],
               ['Business', 'Business'],
               ['Culture', 'Culture']
             ]
-          ), {class: "form-control"} %>
+          ), {prompt: 'Select a track'}, {class: "form-control"} %>
       </div>
     </div>
 
