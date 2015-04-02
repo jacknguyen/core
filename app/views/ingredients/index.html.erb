@@ -3,11 +3,11 @@
 
 <div class="row">
   <% @ingredients.each do |ingredient| %>
-    <div class="col-md-1 col-sm-2">
+    <div class="col-md-1 col-sm-1 col-xs-3">
       <h4><%= link_to ingredient.step, edit_ingredient_path(ingredient) %></h4>
     </div>
 
-    <div class="col-md-11 col-sm-10">
+    <div class="col-md-11 col-sm-11 col-xs-9">
       <h4><%= ingredient.name %></h4>
     </div>
   <% end %>

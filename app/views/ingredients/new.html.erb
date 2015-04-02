@@ -3,57 +3,12 @@
 <p>These ingredients will define your workflow.</p>
 
 <%= form_for @ingredient do |f| %>
+    <%= render partial: 'form_fields', locals: {f: f} %>
+
     <div class="row">
-      <div class="col-sm-3">
-        <%= f.text_field :name, placeholder: "Enter ingredient name",
-                                      class: "form-control", autofocus: true %>
-      </div>
-      <div class="col-sm-9">
+      <div class="col-sm-9 col-xs-12">
         <%= f.submit "Create ingredient", class: "btn btn-default" %>
         <%= link_to "Cancel", ingredients_path %>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-sm-3">
-        <%= render partial: 'shared/error_messages',
-                          locals: {ingredient: @ingredient, errors_for: 'name' } %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-3">
-        <%= f.select :step, options_for_select(
-            [
-              ['Team','Team'],
-              ['Ideation','Ideation'],
-              ['Test','Test'],
-              ['Plan','Plan'],
-              ['Design','Design'],
-              ['Develop','Develop'],
-              ['Expose','Expose'],
-              ['Grow','Grow'],
-              ['Exit','Exit']
-            ]
-          ), {prompt: 'Select an ingredient step'}, {class: "form-control"} %>
-      </div>
-    </div>
-
-    <%= render partial: 'shared/error_messages',
-                      locals: {ingredient: @ingredient, errors_for: 'step' } %>
-
-    <div class="row">
-      <div class="col-sm-3">
-        <%= f.select :track, options_for_select(
-            [
-              ['Product', 'Product'],
-              ['Business', 'Business'],
-              ['Culture', 'Culture']
-            ]
-          ), {prompt: 'Select a track'}, {class: "form-control"} %>
-      </div>
-    </div>
-
-    <%= render partial: 'shared/error_messages',
-                      locals: {ingredient: @ingredient, errors_for: 'track' } %>
 <% end %>
