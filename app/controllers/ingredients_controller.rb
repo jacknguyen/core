@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-  before_action :set_ingredient, only: [:edit, :update]
+  before_action :set_ingredient, only: [:edit, :update, :destroy]
 
   def new
     @ingredient = Ingredient.new
@@ -29,6 +29,11 @@ class IngredientsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @ingredient.destroy
+    redirect_to ingredients_url
   end
 
   private

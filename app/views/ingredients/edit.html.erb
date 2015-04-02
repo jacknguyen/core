@@ -7,6 +7,28 @@
       <div class="col-sm-12">
         <%= f.submit "Save ingredient", class: "btn btn-default" %>
         <%= link_to "Cancel", ingredients_path %>
+        <%= link_to "Delete", '#', data: {toggle: "modal", target: "#delIngredient"} %>
+      </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="delIngredient">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Delete <%= @ingredient.name %></h4>
+          </div>
+
+          <div class="modal-body">
+            <p>Deleting this ingredient will remove it from the system forever.
+            Do you feel certain you want to do this?</p>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <%= link_to "Delete", ingredient_path(@ingredient), method: :delete, class: "btn btn-danger" %>
+          </div>
+        </div>
       </div>
     </div>
 <% end %>
