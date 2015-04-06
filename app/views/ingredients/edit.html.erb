@@ -1,13 +1,13 @@
-<h1>Ingredient</h1>
+<h1 class="page_name">Ingredient</h1>
 
 <%= form_for @ingredient do |f| %>
     <%= render partial: "form_fields", locals: {f: f} %>
 
     <div class="row">
       <div class="col-sm-12">
-        <%= f.submit "Save ingredient", class: "btn btn-default" %>
-        <%= link_to "Cancel", ingredients_path %>
-        <%= link_to "Delete", '#', data: {toggle: "modal", target: "#delIngredient"} %>
+        <%= f.submit "Save ingredient", class: "btn btn-primary" %>
+        <%= link_to "Cancel", ingredients_path, class: "btn btn-default" %>
+        <%= link_to "Delete", '#', data: {toggle: "modal", target: "#delIngredient"}, class: "btn btn-danger" %>
       </div>
     </div>
 

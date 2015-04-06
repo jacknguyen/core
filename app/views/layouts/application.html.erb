@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Core</title>
-  <meta name="viewport" content="width=device-width", initial-scale=1.0">
+  <meta name="viewport" content="width=device-width", initial-scale="1.0">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -10,7 +10,9 @@
 <body>
 
   <div class="container-fluid">
-    <%= yield %>
+    <div class="col-md-10 col-md-offset-1 content">
+      <%= yield %>
+    </div>
   </div>
 
 </body>

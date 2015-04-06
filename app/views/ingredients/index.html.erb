@@ -1,13 +1,14 @@
-<h1>Ingredients</h1>
+<h1 class="page_name">Ingredients</h1>
+
 <%= link_to "Add", new_ingredient_path, class: "btn btn-default" %>
 
 <div class="row">
   <% @ingredients.each do |ingredient| %>
-    <div class="col-md-1 col-sm-1 col-xs-3">
+    <div class="col-md-2 col-sm-2 col-xs-4">
       <h4><%= link_to ingredient.step, edit_ingredient_path(ingredient) %></h4>
     </div>
 
-    <div class="col-md-11 col-sm-11 col-xs-9">
+    <div class="col-md-10 col-sm-10 col-xs-8">
       <h4><%= ingredient.name %></h4>
     </div>
   <% end %>
