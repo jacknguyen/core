@@ -5,6 +5,7 @@
 <%= form_for @ingredient do |f| %>
     <%= render partial: 'form_fields', locals: {f: f} %>
 
+    <!-- Buttons -->
     <div class="row">
       <div class="col-sm-9 col-xs-12">
         <%= f.submit "Create ingredient", class: "btn btn-primary" %>
