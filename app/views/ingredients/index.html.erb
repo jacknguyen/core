@@ -2,7 +2,7 @@
 
 <%= link_to "Add", new_ingredient_path, class: "btn btn-default" %>
 
-<div class="row">
+<div class="row list">
   <% @ingredients.each do |ingredient| %>
     <div class="col-md-2 col-sm-2 col-xs-4">
       <h4><%= link_to ingredient.step, edit_ingredient_path(ingredient) %></h4>
