@@ -1,2 +1,22 @@
-<h1>Products#edit</h1>
-<p>Find me in app/views/products/edit.html.erb</p>
+<h1 class="page_name">Product</h1>
+
+<%= form_for @product do |f| %>
+  <%= render partial: "form_fields", locals: {f: f} %>
+
+  <!-- Buttons -->
+  <div class="row">
+    <div class="col-xs-12 hidden-xs">
+      <%= f.submit "Save product", class: "btn btn-primary" %>
+      <%= link_to "Cancel", products_path, class: "btn btn-default" %>
+      <%= link_to "Delete", '#', data: {toggle: "modal",
+                          target: "#delIngredient"}, class: "btn btn-danger" %>
+    </div>
+
+    <div class="col-xs-12 visible-xs-block">
+      <%= f.submit "Save product", class: "btn btn-primary btn-sm" %>
+      <%= link_to "Cancel", products_path, class: "btn btn-default btn-sm" %>
+      <%= link_to "Delete", '#', data: {toggle: "modal",
+                    target: "#delIngredient"}, class: "btn btn-danger btn-sm" %>
+    </div>
+  </div>
+<% end %>
