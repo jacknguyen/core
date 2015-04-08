@@ -34,3 +34,7 @@ en:
               blank: "Please select a track"
             step:
               blank: "Please select a step"
+        product:
+          attributes:
+            name:
+              blank: "Please enter a product name"

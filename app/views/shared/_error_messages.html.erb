@@ -1,5 +1,5 @@
-<% if @ingredient.errors.any? %>
-  <% @ingredient.errors.messages[errors_for.to_sym].each do |message| %>
-    <span class="alert "><%= message %></span>
+<% if object.errors.any? %>
+  <% object.errors.messages[errors_for.to_sym].each do |message| %>
+    <span class="text-danger"><%= message %></span>
   <% end %>
 <% end %>

@@ -1,0 +1,12 @@
+<h1 class="page_name">Products</h1>
+
+<%= form_for @product do |f| %>
+  <%= render partial: 'form_fields', locals: {f: f} %>
+
+  <div class="row">
+    <div class="col-sm-9 col-xs-12">
+      <%= f.submit "Create product", class: "btn btn-primary" %>
+      <%= link_to "Cancel", products_path, class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>

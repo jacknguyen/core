@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-sm-4 col-md-4 col-xs-12">
     <%= f.text_field :name, placeholder: "Enter ingredient name",
-                                  class: "form-control", autofocus: true %>
+                                      class: "form-control", autofocus: true %>
   </div>
 
   <div class="col-sm-4 col-xs-12">
     <%= render partial: 'shared/error_messages',
-                  locals: {ingredient: @ingredient, errors_for: 'name' } %>
+                          locals: {object: @ingredient, errors_for: 'name' } %>
   </div>
 </div>
 
@@ -29,7 +29,7 @@
 
   <div class="col-sm-4 col-xs-12">
     <%= render partial: 'shared/error_messages',
-                  locals: {ingredient: @ingredient, errors_for: 'step' } %>
+                  locals: {object: @ingredient, errors_for: 'step' } %>
   </div>
 </div>
 
@@ -47,6 +47,6 @@
 
   <div class="col-sm-4 col-xs-12">
     <%= render partial: 'shared/error_messages',
-                      locals: {ingredient: @ingredient, errors_for: 'track' } %>
+                          locals: {object: @ingredient, errors_for: 'track' } %>
   </div>
 </div>

@@ -1,0 +1,17 @@
+<h1 class="page_name">Products</h1>
+
+<%= link_to "Add", new_product_path, class: "btn btn-default" %>
+
+<div class="list">
+  <% @products.each do |product| %>
+    <div class="row">
+      <div class="col-md-2 col-sm-2 col-xs-4">
+        <h4><%= link_to product.name, edit_product_path(product) %></h4>
+      </div>
+
+      <div class="col-md-10 col-sm-10 col-xs-8">
+        <h4><%= product.description %></h4>
+      </div>
+    </div>
+  <% end %>
+</div>
