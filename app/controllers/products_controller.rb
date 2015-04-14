@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:edit, :update]
+  before_action :set_product, :set_product_ingredients, only: [:edit, :update]
 
   def index
-    @products = Product.all
+    @products = Product.all.order(:created_at)
   end
 
   def new
@@ -37,5 +37,9 @@ class ProductsController < ApplicationController
 
     def set_product
       @product = Product.find(params[:id])
+    end
+
+    def set_product_ingredients
+      @ingredients = Product.find(params[:id]).ingredients
     end
 end

@@ -6,13 +6,14 @@ class IngredientsController < ApplicationController
   end
 
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.all.order(:created_at)
   end
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
+    set_ingredient_to_default_list(@ingredient)
 
-    if ingredient.save
+    if @ingredient.save
       redirect_to ingredients_url
     else
       render 'new'
@@ -42,5 +43,12 @@ class IngredientsController < ApplicationController
 
     def set_ingredient
       @ingredient = Ingredient.find(params[:id])
+    end
+
+    # initially every ingredient added to system will belong to the first list
+    # couldn't put it in ingredient model because when duplicating with amoeba
+    # it set those ingredients to master list as well instead of the new list
+    def set_ingredient_to_default_list(ingredient)
+      ingredient.list_id = List.find_by(name: 'master').id
     end
 end
