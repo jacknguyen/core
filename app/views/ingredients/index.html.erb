@@ -2,16 +2,5 @@
 
 <%= link_to "Add", new_ingredient_path, class: "btn btn-default" %>
 
-<div class="list">
-  <% @ingredients.each do |ingredient| %>
-    <div class="row">
-      <div class="col-md-2 col-sm-2 col-xs-4">
-        <h4><%= link_to ingredient.step, edit_ingredient_path(ingredient) %></h4>
-      </div>
-
-      <div class="col-md-10 col-sm-10 col-xs-8">
-        <h4><%= ingredient.name %></h4>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render partial: "shared/ingredient_list",
+                                          locals: {ingredients: @ingredients} %>
