@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  has_one :list
+  has_one :list, dependent: :destroy
   has_many :ingredients, through: :list
   after_create :make_copy_of_master_list
   scope :sorted, -> { order(:created_at) }
