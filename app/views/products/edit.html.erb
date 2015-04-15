@@ -11,14 +11,36 @@
           <%= f.submit "Save product", class: "btn btn-primary" %>
           <%= link_to "Cancel", products_path, class: "btn btn-default" %>
           <%= link_to "Delete", '#', data: {toggle: "modal",
-                          target: "#delIngredient"}, class: "btn btn-danger" %>
+                          target: "#delProduct"}, class: "btn btn-danger" %>
         </div>
 
         <div class="col-xs-12 visible-xs-block">
           <%= f.submit "Save product", class: "btn btn-primary btn-sm" %>
           <%= link_to "Cancel", products_path, class: "btn btn-default btn-sm" %>
           <%= link_to "Delete", '#', data: {toggle: "modal",
-                    target: "#delIngredient"}, class: "btn btn-danger btn-sm" %>
+                    target: "#delProduct"}, class: "btn btn-danger btn-sm" %>
+        </div>
+      </div>
+
+      <!-- Delete Modal -->
+      <div class="modal fade" id="delProduct">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Delete <%= @product.name %></h4>
+            </div>
+
+            <div class="modal-body">
+              <p>This will delete your product and all of its data.
+               Are you sure you want to delete it?</p>
+            </div>
+
+            <div class="modal-footer">
+              <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <%= link_to "Delete", product_path(@product),
+                                      method: :delete, class: "btn btn-danger" %>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
