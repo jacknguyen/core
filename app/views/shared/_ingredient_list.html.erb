@@ -1,8 +1,9 @@
-<div class="list">
+<div class="list sortable">
   <% @ingredients.each do |ingredient| %>
-    <div class="row">
+    <div class="row ingredient" data-ingredient-id=<%= "#{ingredient.id}" %>>
       <div class="col-md-2 col-sm-2 col-xs-4">
         <h4>
+          <span><i class="fa fa-sort"></i></span>
           <%= link_to ingredient.step, edit_ingredient_path(ingredient) %>
         </h4>
       </div>

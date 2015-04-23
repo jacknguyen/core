@@ -36,9 +36,17 @@ class IngredientsController < ApplicationController
     redirect_to ingredients_url
   end
 
+  def update_row_order
+    @ingredient = Ingredient.find(ingredient_params[:ingredient_id])
+    @ingredient.row_order_position = ingredient_params[:row_order_position]
+    @ingredient.save
+
+    render nothing: true # this is a POST action, updates sent via AJAX, no view rendered
+  end
+
   private
     def ingredient_params
-      params.require(:ingredient).permit(:name, :step, :track)
+      params.require(:ingredient).permit(:name, :step, :track, :row_order_position, :ingredient_id)
     end
 
     def set_ingredient
@@ -53,6 +61,6 @@ class IngredientsController < ApplicationController
     end
 
     def set_ingredients_to_master_list_ingredients
-      @ingredients = List.find_by(name: "master").ingredients
+      @ingredients = List.find_by(name: "master").ingredients.rank(:row_order).all
     end
 end

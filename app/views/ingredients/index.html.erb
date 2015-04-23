@@ -1,6 +1,7 @@
 <h1 class="page_name">Ingredients</h1>
 
 <%= link_to "Add", new_ingredient_path, class: "btn btn-default" %>
+<%= link_to "Reorder", "javascript:void(0)", class: "btn btn-info reorder" %>
 
 <%= render partial: "shared/ingredient_list",
                                           locals: {ingredients: @ingredients} %>

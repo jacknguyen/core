@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  resources :ingredients
-  resources :products
+  resources :ingredients do
+    post :update_row_order, on: :collection
+  end
+
+  resources :products do
+    resources :ingredients do
+      post :update_row_order, on: :collection
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
