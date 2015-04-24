@@ -10,12 +10,13 @@ function listSortConfig() {
       axis: 'y',
       items: '.ingredient',
       cursor: 'move',
+      sort: function(event, ui) {
+        return ui.item.addClass('');
+      },
       update: function(event, ui) {
         var ingredient_id, position;
         ingredient_id = ui.item.data('ingredient-id'); // grabs the ingredient id
         position = ui.item.index();
-        // console.log("ingredient id : " + ingredient_id);
-        // console.log("position: " + position);
         return $.ajax({
           type: 'POST',
           url: '/ingredients/update_row_order',
@@ -34,10 +35,21 @@ function listSortConfig() {
 function toggleListSortable() {
   if (listState == 'disabled') {
     $('.list.sortable').sortable('enable');
+    addButtonsToList();
     listState = 'enabled';
   } else {
     $('.list.sortable').sortable('disable');
+    removeButtonsFromList();
     listState = 'disabled';
   }
+  // remove before final commit
   console.log("list reorder state: " + listState);
+}
+
+function addButtonsToList() {
+  $('h4 span i').addClass('fa fa-sort');
+}
+
+function removeButtonsFromList() {
+  $('h4 span i').removeClass('fa fa-sort');
 }
