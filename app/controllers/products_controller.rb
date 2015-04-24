@@ -21,7 +21,6 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    # @ingredients = Product.find(params[:id]).ingredients
   end
 
   def update
@@ -47,6 +46,6 @@ class ProductsController < ApplicationController
     end
 
     def set_product_ingredients
-      @ingredients = Product.find(params[:id]).ingredients
+      @ingredients = Product.find(params[:id]).ingredients.rank(:row_order).all
     end
 end

@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 function listSortConfig() {
-  $('.list.sortable').sortable({
+  $('.sortable').sortable({
       axis: 'y',
       items: '.ingredient',
       cursor: 'move',
@@ -14,16 +14,19 @@ function listSortConfig() {
       // hold action
       sort: function(event, ui) {
         ui.item.css('background-color','lightgray');
+        console.log(ui.item.index());
       },
       // this event occurs when click has been released
       stop: function(event, ui) {
         ui.item.css('background-color','white');
-        ui.item.children('div').effect('highlight', {}, 1000);
+        ui.item.effect('highlight', {}, 1000);
+        console.log(ui.item.parent());
       },
       update: function(event, ui) {
         var ingredient_id, position;
-        ingredient_id = ui.item.data('ingredient-id'); // grabs the ingredient id
+        ingredient_id = ui.item.data('ingredientId'); // grabs the ingredient id
         position = ui.item.index();
+        console.log(position);
         $.ajax({
           type: 'POST',
           url: '/ingredients/update_row_order',
@@ -34,34 +37,34 @@ function listSortConfig() {
               row_order_position: position
             }
           }
-        })
+        });
       }
   });
 }
 
 function setInitialListStateAsDisabled() {
-  $('.list.sortable').sortable('disable');
+  $('.sortable').sortable('disable');
 }
 
 function toggleListSortable() {
-  var listState = $('.list.sortable').sortable('instance').options.disabled;
+  var listState = $('.sortable').sortable('instance').options.disabled;
 
   if (listState == true) {
-    $('.list.sortable').sortable('enable');
+    $('.sortable').sortable('enable');
   } else {
-    $('.list.sortable').sortable('disable');
+    $('.sortable').sortable('disable');
   }
   toggleIconsToList();
   // remove before final commit
-  console.log("list reorder state: " + listState);
+  // console.log("reorder state: " + listState);
 }
 
 function toggleIconsToList() {
-  var listState = $('.list.sortable').sortable('instance').options.disabled;
+  var listState = $('.sortable').sortable('instance').options.disabled;
 
   if ( listState == true ) {
-    $('h4 span i').removeClass('fa fa-sort');
+    $('span i').removeClass('fa fa-sort');
   } else {
-    $('h4 span i').addClass('fa fa-sort');
+    $('span i').addClass('fa fa-sort');
   }
 }

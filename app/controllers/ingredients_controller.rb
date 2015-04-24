@@ -1,12 +1,12 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:edit, :update, :destroy]
-  before_action :set_ingredients_to_master_list_ingredients, only: [:index]
 
   def new
     @ingredient = Ingredient.new
   end
 
   def index
+    @ingredients = List.find_by(name: "master").ingredients.rank(:row_order).all
   end
 
   def create
@@ -58,9 +58,5 @@ class IngredientsController < ApplicationController
     # it set those ingredients to master list as well instead of the new list
     def set_ingredient_to_default_list(ingredient)
       ingredient.list_id = List.find_by(name: 'master').id
-    end
-
-    def set_ingredients_to_master_list_ingredients
-      @ingredients = List.find_by(name: "master").ingredients.rank(:row_order).all
     end
 end
