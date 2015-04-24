@@ -1,7 +1,7 @@
-var listState = 'disabled';
-$(function() {
-  listState = 'disabled'; // initialize listState to always be disabled
+$(document).ready(function() {
   listSortConfig();
+  // initialize listState to always be disabled upon visiting the page
+  setInitialListStateAsDisabled();
   $('.reorder').click(toggleListSortable);
 });
 
@@ -10,14 +10,21 @@ function listSortConfig() {
       axis: 'y',
       items: '.ingredient',
       cursor: 'move',
+      // this event is when an ingredient is selected and during the click and
+      // hold action
       sort: function(event, ui) {
-        return ui.item.addClass('');
+        ui.item.css('background-color','lightgray');
+      },
+      // this event occurs when click has been released
+      stop: function(event, ui) {
+        ui.item.css('background-color','white');
+        ui.item.children('div').effect('highlight', {}, 1000);
       },
       update: function(event, ui) {
         var ingredient_id, position;
         ingredient_id = ui.item.data('ingredient-id'); // grabs the ingredient id
         position = ui.item.index();
-        return $.ajax({
+        $.ajax({
           type: 'POST',
           url: '/ingredients/update_row_order',
           dataType: 'json',
@@ -32,24 +39,29 @@ function listSortConfig() {
   });
 }
 
+function setInitialListStateAsDisabled() {
+  $('.list.sortable').sortable('disable');
+}
+
 function toggleListSortable() {
-  if (listState == 'disabled') {
+  var listState = $('.list.sortable').sortable('instance').options.disabled;
+
+  if (listState == true) {
     $('.list.sortable').sortable('enable');
-    addButtonsToList();
-    listState = 'enabled';
   } else {
     $('.list.sortable').sortable('disable');
-    removeButtonsFromList();
-    listState = 'disabled';
   }
+  toggleIconsToList();
   // remove before final commit
   console.log("list reorder state: " + listState);
 }
 
-function addButtonsToList() {
-  $('h4 span i').addClass('fa fa-sort');
-}
+function toggleIconsToList() {
+  var listState = $('.list.sortable').sortable('instance').options.disabled;
 
-function removeButtonsFromList() {
-  $('h4 span i').removeClass('fa fa-sort');
+  if ( listState == true ) {
+    $('h4 span i').removeClass('fa fa-sort');
+  } else {
+    $('h4 span i').addClass('fa fa-sort');
+  }
 }
