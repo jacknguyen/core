@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 255,
                                message: "Please enter a shorter product name" }
 
-  # duplicates the master list upon creation of a product
+  # allows duplication the master list upon creation of a product
   amoeba do
     enable
   end
@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
   end
 
   def make_copy_of_master_list
-    master = List.find_by(name: 'master')
+    master = List.master_list.first
     copied_list = master.amoeba_dup
     set_copy_of_list_to_new_product(copied_list)
     copied_list.save

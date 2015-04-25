@@ -6,7 +6,7 @@ class IngredientsController < ApplicationController
   end
 
   def index
-    @ingredients = List.find_by(name: "master").ingredients.rank(:row_order)
+    @ingredients = Ingredient.master_list_ingredients.rank(:row_order)
   end
 
   def create
@@ -59,6 +59,6 @@ class IngredientsController < ApplicationController
     # couldn't put it in ingredient model because when duplicating with amoeba
     # it set those ingredients to master list as well instead of the new list
     def set_ingredient_to_default_list(ingredient)
-      ingredient.list_id = List.find_by(name: 'master').id
+      ingredient.list_id = List.master_list.id
     end
 end
