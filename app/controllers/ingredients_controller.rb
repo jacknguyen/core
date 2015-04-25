@@ -6,7 +6,7 @@ class IngredientsController < ApplicationController
   end
 
   def index
-    @ingredients = List.find_by(name: "master").ingredients.rank(:row_order).all
+    @ingredients = List.find_by(name: "master").ingredients.rank(:row_order)
   end
 
   def create
@@ -41,12 +41,14 @@ class IngredientsController < ApplicationController
     @ingredient.row_order_position = ingredient_params[:row_order_position]
     @ingredient.save
 
-    render nothing: true # this is a POST action, updates sent via AJAX, no view rendered
+    # this is a POST action, updates sent via AJAX, no view rendered
+    render nothing: true
   end
 
   private
     def ingredient_params
-      params.require(:ingredient).permit(:name, :step, :track, :row_order_position, :ingredient_id)
+      params.require(:ingredient).permit(:name, :step, :track,
+                                            :row_order_position, :ingredient_id)
     end
 
     def set_ingredient

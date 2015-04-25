@@ -10,23 +10,23 @@ function listSortConfig() {
       axis: 'y',
       items: '.ingredient',
       cursor: 'move',
+
       // this event is when an ingredient is selected and during the click and
       // hold action
       sort: function(event, ui) {
-        ui.item.css('background-color','lightgray');
-        console.log(ui.item.index());
+        ui.item.css('background-color','lightgray'); // set background during movement
       },
+
       // this event occurs when click has been released
       stop: function(event, ui) {
-        ui.item.css('background-color','white');
-        ui.item.effect('highlight', {}, 1000);
-        console.log(ui.item.parent());
+        ui.item.css('background-color','white'); // resetting background to default
+        ui.item.effect('highlight', {}, 1000); // adds highlight effect when deactivate ingredient
       },
+
       update: function(event, ui) {
         var ingredient_id, position;
         ingredient_id = ui.item.data('ingredientId'); // grabs the ingredient id
         position = ui.item.index();
-        console.log(position);
         $.ajax({
           type: 'POST',
           url: '/ingredients/update_row_order',
@@ -54,15 +54,11 @@ function toggleListSortable() {
   } else {
     $('.sortable').sortable('disable');
   }
-  toggleIconsToList();
-  // remove before final commit
-  // console.log("reorder state: " + listState);
+  toggleIconsToList(listState);
 }
 
-function toggleIconsToList() {
-  var listState = $('.sortable').sortable('instance').options.disabled;
-
-  if ( listState == true ) {
+function toggleIconsToList(listState) {
+  if ( listState == false ) {
     $('span i').removeClass('fa fa-sort');
   } else {
     $('span i').addClass('fa fa-sort');

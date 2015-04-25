@@ -1,7 +1,7 @@
 class Ingredient < ActiveRecord::Base
   # this will allow drag-n-drop sorting functionality
   include RankedModel
-  ranks :row_order
+  ranks :row_order, :with_same => :list_id
 
   belongs_to :list
 
